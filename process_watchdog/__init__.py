@@ -27,6 +27,10 @@ class ProcessWatchdog():
         except Exception as ex:
             print(f"got exception in process watchdog, killing parent:")
             traceback.print_exc()
+            os.kill(os.getppid(), signal.SIGTERM)
+            print("waiting 60s to send SIGKILL...")
+            time.sleep(60)
+            print("sending SIGKILL to parent PID")
             os.kill(os.getppid(), signal.SIGKILL)
 
     def __enter__(self):

@@ -37,8 +37,8 @@ class ProcessWatchdog():
         print("enter begin")
         self.q = Queue()
         p = Process(target=self.loop, args=(self.q,))
-        p.start()
         self.ping()
+        p.start()
         #p.join()
         return self
 
